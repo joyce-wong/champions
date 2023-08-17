@@ -50,3 +50,8 @@ h2{
     color: white;
     text-align: center;
 }
+
+ul li{
+    color: black;
+    background-color: white;
+}
