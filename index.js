@@ -1,6 +1,6 @@
 // javascript
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 
 const appSettings = {
@@ -10,21 +10,39 @@ const appSettings = {
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const recommendationsInDB = ref(database, "recommendations")
-
-onValue(recommendationsInDB, function(snapshot){
-    let itemsArray = Object.values(snapshot.val())
-    let recommendationsArray = itemsArray
-    
-    clearInputFieldEl()
-
-    recommendationsArray.map(recommendation => {
-        addToList(recommendation)
-    })
-})
-
 const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 const recommendationsListEl = document.getElementById("recommendations-list")
+
+onValue(recommendationsInDB, function(snapshot){
+   
+
+    if(snapshot.exists()){
+        let itemsArray = Object.entries(snapshot.val())
+        clearRecommendationsListEl()
+    
+        for(let i = 0; i < itemsArray.length; i++){
+            let currentItem = itemsArray[i]
+            let [currentItemID, currentItemValue] = currentItem
+           
+    
+            addToList(currentItem)
+            
+        }
+    } else {
+        recommendationsListEl.innerHTML = "No items here...yet"
+        // console.log("recommendationsListEl.innerHTML", recommendationsListEl.innerHTML)
+    }
+
+    
+    // recommendationsArray.map(recommendation => {
+    //     addToList(recommendation)
+    // })
+})
+
+function clearRecommendationsListEl(){
+    recommendationsListEl.innerHTML = ""
+}
 
 addButtonEl.addEventListener("click", function(){
     let inputValue = inputFieldEl.value
@@ -32,7 +50,7 @@ addButtonEl.addEventListener("click", function(){
     push(recommendationsInDB, inputValue)
 
     clearInputFieldEl()
-    addToList(inputValue)
+    // addToList(inputValue)
 
 })
 
@@ -44,7 +62,20 @@ function clearInputFieldEl(){
     inputFieldEl.value = ""
 }
 
-function addToList(itemValue){
-    recommendationsListEl.innerHTML += `<li>${itemValue}</li>`
+function addToList(item){
+   let [itemID, itemValue] = item
+
+    let newEl = document.createElement("li")
+
+    newEl.textContent = itemValue
+
+    newEl.addEventListener("click", function(){
+        console.log(itemID)
+        let exactLocationOfItemInDB = ref(database, `recommendations/${itemID}`)
+
+        remove(exactLocationOfItemInDB)
+    })
+
+    recommendationsListEl.append(newEl)
     
 }
