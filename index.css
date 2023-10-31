@@ -18,7 +18,7 @@ img {
     margin: 0 auto;
 }
 
-input{
+#input-field{
     color: #8F8F8F;
     background-color: #444059;
     border: 0;
@@ -29,7 +29,13 @@ input{
     font-family: 'Inter', sans-serif;
     margin: 10px 0;
     height: 120px;
-    vertical-align: top;
+    justify-content: left;
+    text-align: left;
+}
+
+textarea{
+    left: 15px;
+    top: 20px;
 }
 
 button{
@@ -44,7 +50,7 @@ button{
 }
 
 button:hover {
-    background-color: #432000;
+    color: whitesmoke;
     cursor: pointer;
 }
 
@@ -64,16 +70,17 @@ ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 ul li{
     color: black;
+    /* height: 100px; */
+    width: 317px;
     font-size: 20px;
     padding: 15px;
     border-radius: 0px;
-    flex-grow: 1;
     background-color: white;
     text-align: left;
     vertical-align: top;
@@ -81,6 +88,23 @@ ul li{
 }
 
 ul li:hover {
-    background-color: #FFECC7;
+    background-color: gainsboro;
     cursor: pointer;
+}
+
+@media (max-width:767px){
+    #input-field{
+        color: #8F8F8F;
+        background-color: #444059;
+        border: 0;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 20px;
+        text-align: left;
+        font-family: 'Inter', sans-serif;
+        margin: 10px 0;
+        width: 290px;
+        justify-content: left;
+        text-align: left;
+    }
 }
