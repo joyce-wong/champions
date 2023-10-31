@@ -1,4 +1,4 @@
-# co51041c2b73541d9495ba5be
+# We are the Champions
 
 Quick start:
 
@@ -7,15 +7,10 @@ $ npm install
 $ npm start
 ````
 
-Head over to https://vitejs.dev/ to learn more about using vite
-## About Scrimba
+## About We Are the Champions
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+This is a mobile friendly website that allows people to create, read, and delete recommendations for a service.
 
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+- [Deployed Website](https://65415323ca78e85617d79212--nimble-smakager-6d849f.netlify.app/)
 
-Happy Coding!
+Thanks for checking out my project!
